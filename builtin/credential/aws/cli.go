@@ -66,6 +66,11 @@ func GenerateLoginData(accessKey, secretKey, sessionToken, headerValue string) (
 	if err != nil {
 		return nil, err
 	}
+	fmt.Sprintf("***iam_http_request_method: %+v", stsRequest.HTTPRequest.Method)
+	fmt.Sprintf("***iam_request_url: %+v", stsRequest.HTTPRequest.URL.String())
+	fmt.Sprintf("***iam_request_headers: %+v", headersJson)
+	fmt.Sprintf("***iam_request_body: %+v", requestBody)
+	
 	loginData["iam_http_request_method"] = stsRequest.HTTPRequest.Method
 	loginData["iam_request_url"] = base64.StdEncoding.EncodeToString([]byte(stsRequest.HTTPRequest.URL.String()))
 	loginData["iam_request_headers"] = base64.StdEncoding.EncodeToString(headersJson)
